@@ -94,18 +94,42 @@ namespace CustomList
             return ret;
         }
 
-        public static CustomList<T> operator+ (CustomList<T> a, CustomList<T> b)
+        public static CustomList<T> operator +(CustomList<T> a, CustomList<T> b)
         {
             CustomList<T> r = new CustomList<T>(a.Count() + b.Count());
-            for(int i=0; i<a.Count(); i++)
+            for (int i = 0; i < a.Count(); i++)
             {
                 r[i] = a[i];
             }
 
-            for(int i=0; i<b.Count(); i++) {
+            for (int i = 0; i < b.Count(); i++) {
                 r[i + a.Count()] = b[i];
             }
             return r;
+        }
+
+        public static CustomList<T> operator -(CustomList<T> a, CustomList<T> b) 
+        {
+            CustomList<T> ret = new CustomList<T>(a.Count());
+
+            for(int i=0; i<a.Count(); i++)
+            {
+                ret[i] = a[i];
+            }
+
+            for (int i = 0; i < b.Count(); i++)
+            {
+                ret = ret.Filter((x) =>
+                {
+                    if (x.Equals(b[i]))
+                    {
+                        return false;
+                    }
+
+                    return true;
+                });
+            }
+            return ret;
         }
 
         public static CustomList<T> Zip(CustomList<T> a, CustomList<T> b)
@@ -127,12 +151,24 @@ namespace CustomList
         public T this[int i] {
             get
             {
-                return arr[i];
+                try
+                {
+                    return arr[i];
+                } catch(IndexOutOfRangeException E)
+                {
+                    return default(T);
+                }
             }
 
             set
             {
-                arr[i] = value;
+                try
+                {
+                    arr[i] = value;
+                } catch(IndexOutOfRangeException E)
+                {
+
+                }
             }
         }
     }

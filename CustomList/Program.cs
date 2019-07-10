@@ -37,6 +37,29 @@ namespace CustomList
                 x.makeSound();
             });
 
+            CustomList<int> a = new CustomList<int>();
+            a.Add(10);
+            a.Add(20);
+            a.Add(30);
+            a.Add(40);
+            a.Add(45);
+
+            CustomList<int> b = new CustomList<int>();
+
+            b.Add(10);
+            b.Add(25);
+            b.Add(20);
+            b.Add(15);
+            int z = 1;
+            int y = -1;
+
+            CustomList<int> subtracted = a-b;
+
+            subtracted.Map((x) =>
+            {
+                Console.WriteLine(x);
+            });
+
             CustomList<animal> filteredList = new CustomList<animal>();
         }
     }
