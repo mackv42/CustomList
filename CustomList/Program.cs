@@ -45,38 +45,29 @@ namespace CustomList
 
             CustomList<int> c = new CustomList<int>();
 
-
-            
-
             CustomList<int> a = new CustomList<int>();
             a.Add(10);
             a.Add(20);
             a.Add(30);
             a.Add(40);
             a.Add(45);
+
             //a.Remove(0);
-            a.Remove(a.Count()-1);
-            a.Map((x) => {
+            //a.Remove(a.Count()-1);
+            Console.Write(a.Count());
+            CustomList<int> b = new CustomList<int>(new int[] { 10, 20, 30});
+            Console.Write(a.Equals(b));
+
+            CustomList<int> d = CustomList<int>.Zip(a, b);
+            Console.WriteLine();
+
+            a.Add(b);
+
+            (a).Map((x) => {
                 Console.WriteLine(x);
             });
 
-            CustomList<int> b = new CustomList<int>();
-
-            b.Add(10);
-            b.Add(25);
-            b.Add(20);
-            b.Add(15);
-            int z = 1;
-            int y = -1;
-
-            CustomList<int> subtracted = a-b;
-            /*
-            subtracted.Map((x) =>
-            {
-                Console.WriteLine(x);
-            });*/
-
-            CustomList<animal> filteredList = new CustomList<animal>();
+           
         }
     }
 }

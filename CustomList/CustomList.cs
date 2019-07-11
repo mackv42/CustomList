@@ -4,13 +4,32 @@ using System.Text;
 
 namespace CustomList
 {
-    class CustomList<T>
+    public class CustomList<T>
     {
         private int count;
         private T[] arr;
 
         public CustomList() {
             count = 0;
+        }
+
+        public bool Equals(CustomList<T> a)
+        {
+
+            if(a.Count() != this.Count())
+            {
+                return false;
+            }
+
+            for(int i=0; i<count; i++)
+            {
+                if(!a[i].Equals(this[i]))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         public CustomList(int length)
@@ -45,6 +64,15 @@ namespace CustomList
             return count;
         }
 
+        public void copyArr(CustomList<T> arr1, CustomList<T> arr2)
+        {
+            for (int i = 0; i < arr1.Count(); i++)
+            {
+                arr1[i] = arr2[i];
+            }
+
+        }
+
         private void resize(int n)
         {
             T[] arr2 = new T[n];
@@ -55,14 +83,15 @@ namespace CustomList
                 this.arr = null;
             }
 
-            if(n < count)
+            if (n <= this.Count())
             {
-                for (int i = 0; i < count-1; i++)
+                for (int i = 0; i < n; i++)
                 {
                     arr2[i] = arr[i];
                 }
-
-                count--;
+                
+                count = n;
+                return;
             }
             
             for (int i = 0; i < count; i++)
@@ -81,22 +110,41 @@ namespace CustomList
         }
 
         public void Add(CustomList<T> add) {
-            this.resize(add.Count());
-            for (int i = add.Count(); i < count; i++)
+            if (add.Count() == 0)
             {
-                arr[i] = add[i - add.Count()];
+                return;
+            }
+
+            int oldcount = this.count;
+            this.resize(count + add.count);
+
+            for (int i = 0; i < add.count; i++)
+            {
+                arr[i + oldcount] = add[i];
             }
         }
 
+        public static CustomList<T> operator +(CustomList<T> a, CustomList<T> b)
+        {
+            CustomList<T> ret = new CustomList<T>(a.Count() + b.Count());
+            for (int i = 0; i < a.Count(); i++)
+            {
+                ret[i] = a[i];
+            }
 
-        //THIS WORKS!
+            for (int i = 0; i < b.Count(); i++)
+            {
+                ret[i + a.Count()] = b[i];
+            }
+            return ret;
+        }
+
         public CustomList<T>[] Split(int index)
         {
             int count2 = count - index;
             CustomList<T> first = new CustomList<T>(index);
             CustomList<T> second = new CustomList<T>(count2);
             copyArr(first, this);
-            //copyArr(second, this);
             
             for (int i = 0; i < count2; i++)
             {
@@ -108,7 +156,6 @@ namespace CustomList
 
 
         //this doesn't work
-        /*
         public CustomList<T> Splice(int p1, int p2)
         {
             int count2 = p2 - p1;
@@ -116,30 +163,20 @@ namespace CustomList
 
             for(int i=p1; i<p2; i++)
             {
-                ret[i] = arr[i];
+                ret[i] = this[i];
             }
 
             //sret.count = count2;
             return ret;
-        }*/
-
-        public void copyArr(CustomList<T> arr1, CustomList<T> arr2)
-        {
-            for(int i = 0; i<arr1.Count(); i++)
-            {
-                arr1.arr[i] = arr2.arr[i];
-            }
         }
 
 
-        //AYE
-        public void Remove(int index)
+        public void Remove2(int index)
         {
             index += 1;
             CustomList<T> first = this.Split(index)[0];
             CustomList<T> second = this.Split(index)[1];
-            Console.Write(first.arr);
-            
+
             this.resize(count - 1);
             if (first.arr == null)
             {
@@ -147,9 +184,37 @@ namespace CustomList
                 return;
             }
 
-            first.resize(first.Count()-1);
+            first.resize(first.count-1);
 
             copyArr(this, first + second);
+        }
+
+
+        public void Remove(int index)
+        {
+            //index += 1;
+            CustomList<T> newarr = new CustomList<T>(count - 1);
+
+            int indexer = 0;
+            for (int i=0; i<count; i++)
+            {
+                if(i == index)
+                {
+                    indexer = index+1;
+                    break;
+                }
+                
+                newarr[i] = this[i];
+            }
+
+            for(int i=indexer; i<count; i++)
+            {
+                newarr[i - 1] = this[i];
+            }
+
+            this.resize(count - 1);
+
+            copyArr(this, newarr);
         }
 
         public void Map(Action<T> f )
@@ -173,19 +238,7 @@ namespace CustomList
             return ret;
         }
 
-        public static CustomList<T> operator +(CustomList<T> a, CustomList<T> b)
-        {
-            CustomList<T> r = new CustomList<T>(a.Count() + b.Count());
-            for (int i = 0; i < a.Count(); i++)
-            {
-                r[i] = a[i];
-            }
 
-            for (int i = 0; i < b.Count(); i++) {
-                r[i + a.Count()] = b[i];
-            }
-            return r;
-        }
 
         public static CustomList<T> operator -(CustomList<T> a, CustomList<T> b) 
         {
@@ -213,19 +266,36 @@ namespace CustomList
 
         public static CustomList<T> Zip(CustomList<T> a, CustomList<T> b)
         {
-            CustomList<T> ret = new CustomList<T>(a.Count()+b.Count());
-            for(int i=0; i < a.Count()*2; i+=2)
+            if(a.count == 0)
             {
-                ret[i] = a[i/2];
+                if (b.Count() != 0)
+                {
+                    return b;
+                }
+
+                return new CustomList<T>();
             }
-            
-            for(int i=0; i<b.Count()*2; i += 2)
+
+            if(b.count == 0)
             {
-                ret[i + 1] = b[i/2];
+                return a;
+            }
+
+            CustomList<T> ret = new CustomList<T>(a.Count() + b.Count());
+
+            for (int i = 0; i < a.Count() * 2; i += 2)
+            {
+                ret[i] = a[i / 2];
+            }
+
+            for (int i = 0; i < b.Count() * 2; i += 2)
+            {
+                ret[i + 1] = b[i / 2];
             }
 
             return ret;
         }
+
 
         public T this[int i] {
             get

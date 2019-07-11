@@ -1,0 +1,17 @@
+C:\Users\Vincent\source\repos\CustomList\UnitTest\bin\Debug\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\Vincent\source\repos\CustomList\UnitTest\bin\Debug\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\Vincent\source\repos\CustomList\UnitTest\bin\Debug\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\Vincent\source\repos\CustomList\UnitTest\bin\Debug\netcoreapp2.1\UnitTest.deps.json
+C:\Users\Vincent\source\repos\CustomList\UnitTest\bin\Debug\netcoreapp2.1\UnitTest.runtimeconfig.json
+C:\Users\Vincent\source\repos\CustomList\UnitTest\bin\Debug\netcoreapp2.1\UnitTest.runtimeconfig.dev.json
+C:\Users\Vincent\source\repos\CustomList\UnitTest\bin\Debug\netcoreapp2.1\UnitTest.dll
+C:\Users\Vincent\source\repos\CustomList\UnitTest\bin\Debug\netcoreapp2.1\UnitTest.pdb
+C:\Users\Vincent\source\repos\CustomList\UnitTest\bin\Debug\netcoreapp2.1\CustomList.dll
+C:\Users\Vincent\source\repos\CustomList\UnitTest\bin\Debug\netcoreapp2.1\CustomList.pdb
+C:\Users\Vincent\source\repos\CustomList\UnitTest\obj\Debug\netcoreapp2.1\UnitTest.csprojAssemblyReference.cache
+C:\Users\Vincent\source\repos\CustomList\UnitTest\obj\Debug\netcoreapp2.1\UnitTest.csproj.CoreCompileInputs.cache
+C:\Users\Vincent\source\repos\CustomList\UnitTest\obj\Debug\netcoreapp2.1\UnitTest.AssemblyInfoInputs.cache
+C:\Users\Vincent\source\repos\CustomList\UnitTest\obj\Debug\netcoreapp2.1\UnitTest.AssemblyInfo.cs
+C:\Users\Vincent\source\repos\CustomList\UnitTest\obj\Debug\netcoreapp2.1\UnitTest.csproj.CopyComplete
+C:\Users\Vincent\source\repos\CustomList\UnitTest\obj\Debug\netcoreapp2.1\UnitTest.dll
+C:\Users\Vincent\source\repos\CustomList\UnitTest\obj\Debug\netcoreapp2.1\UnitTest.pdb
