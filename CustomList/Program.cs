@@ -2,21 +2,34 @@
 
 namespace CustomList
 {
-   
+
     class animal
+
     {
-       
+
         public string color;
         private int numLegs;
         private string sound;
         public string name;
+
         public animal(string name, string sound)
         {
             this.sound = sound;
             this.name = name;
         }
 
-        public void makeSound()
+        /*
+        public void this[](animal a1, animal a2)
+        {
+            set{
+                a1.color = a2.color;
+                a1.sound = a2.sound;
+                a1.name = a2.name;
+            }
+        }*/
+
+
+    public void makeSound()
         {
             Console.WriteLine($"The {name} says {sound}");
         }
@@ -30,12 +43,10 @@ namespace CustomList
             CustomList<animal> list2 = new CustomList<animal>(new animal[] { new animal("wombat", "reee"), new animal("seel", "oorf"), new animal("mouse", "eee") });
             CustomList<animal> animalsZipped = CustomList<animal>.Zip(list, list2);
 
-            Console.Write(list.Count());
             CustomList<int> c = new CustomList<int>();
 
-            animalsZipped.Map((x) => {
-                x.makeSound();
-            });
+
+            
 
             CustomList<int> a = new CustomList<int>();
             a.Add(10);
@@ -43,6 +54,11 @@ namespace CustomList
             a.Add(30);
             a.Add(40);
             a.Add(45);
+            //a.Remove(0);
+            a.Remove(a.Count()-1);
+            a.Map((x) => {
+                Console.WriteLine(x);
+            });
 
             CustomList<int> b = new CustomList<int>();
 
@@ -54,11 +70,11 @@ namespace CustomList
             int y = -1;
 
             CustomList<int> subtracted = a-b;
-
+            /*
             subtracted.Map((x) =>
             {
                 Console.WriteLine(x);
-            });
+            });*/
 
             CustomList<animal> filteredList = new CustomList<animal>();
         }

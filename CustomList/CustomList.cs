@@ -6,7 +6,6 @@ namespace CustomList
 {
     class CustomList<T>
     {
-        public delegate void Del(T message);
         private int count;
         private T[] arr;
 
@@ -48,20 +47,36 @@ namespace CustomList
 
         private void resize(int n)
         {
-            T[] arr2 = new T[count + n];
+            T[] arr2 = new T[n];
 
+            if(n < 0)
+            {
+                count = -1;
+                this.arr = null;
+            }
+
+            if(n < count)
+            {
+                for (int i = 0; i < count-1; i++)
+                {
+                    arr2[i] = arr[i];
+                }
+
+                count--;
+            }
+            
             for (int i = 0; i < count; i++)
             {
                 arr2[i] = arr[i];
             }
 
             this.arr = arr2;
-            count += n;
+            count = n;
         }
 
         public void Add(T item)
         {
-            this.resize(1);
+            this.resize(count + 1);
             arr[count - 1] = item;
         }
 
@@ -71,6 +86,70 @@ namespace CustomList
             {
                 arr[i] = add[i - add.Count()];
             }
+        }
+
+
+        //THIS WORKS!
+        public CustomList<T>[] Split(int index)
+        {
+            int count2 = count - index;
+            CustomList<T> first = new CustomList<T>(index);
+            CustomList<T> second = new CustomList<T>(count2);
+            copyArr(first, this);
+            //copyArr(second, this);
+            
+            for (int i = 0; i < count2; i++)
+            {
+                second[i] = arr[i+index];
+            }
+
+            return new CustomList<T>[2] { first, second };
+        }
+
+
+        //this doesn't work
+        /*
+        public CustomList<T> Splice(int p1, int p2)
+        {
+            int count2 = p2 - p1;
+            CustomList<T> ret = new CustomList<T>(count2+1);
+
+            for(int i=p1; i<p2; i++)
+            {
+                ret[i] = arr[i];
+            }
+
+            //sret.count = count2;
+            return ret;
+        }*/
+
+        public void copyArr(CustomList<T> arr1, CustomList<T> arr2)
+        {
+            for(int i = 0; i<arr1.Count(); i++)
+            {
+                arr1.arr[i] = arr2.arr[i];
+            }
+        }
+
+
+        //AYE
+        public void Remove(int index)
+        {
+            index += 1;
+            CustomList<T> first = this.Split(index)[0];
+            CustomList<T> second = this.Split(index)[1];
+            Console.Write(first.arr);
+            
+            this.resize(count - 1);
+            if (first.arr == null)
+            {
+                copyArr(this, second);
+                return;
+            }
+
+            first.resize(first.Count()-1);
+
+            copyArr(this, first + second);
         }
 
         public void Map(Action<T> f )
@@ -164,7 +243,7 @@ namespace CustomList
             {
                 try
                 {
-                    arr[i] = value;
+                  arr[i] = value;
                 } catch(IndexOutOfRangeException E)
                 {
 
