@@ -55,18 +55,31 @@ namespace CustomList
             //a.Remove(0);
             //a.Remove(a.Count()-1);
             Console.Write(a.Count());
-            CustomList<int> b = new CustomList<int>(new int[] { 10, 20, 30});
+
+            CustomList<int> b = new CustomList<int>(new int[] { 10, 20, 30, 40, 50, 60});
+            int filter = 30;
+            CustomList<int> e = b.Filter( (x) =>
+            {
+                if(x >= filter)
+                {
+                    return true;
+                }
+
+                return false;
+            });
+
+            e.Map((x) => Console.WriteLine(x));
+
             Console.Write(a.Equals(b));
 
             CustomList<int> d = CustomList<int>.Zip(a, b);
             Console.WriteLine();
 
-            a.Add(b);
-
-            (a).Map((x) => {
+           
+            foreach(var x in a)
+            {
                 Console.WriteLine(x);
-            });
-
+            }
            
         }
     }
