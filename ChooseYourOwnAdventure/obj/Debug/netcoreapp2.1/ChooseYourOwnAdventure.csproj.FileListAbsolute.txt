@@ -1,0 +1,14 @@
+C:\Users\Vincent\source\repos\CustomList\ChooseYourOwnAdventure\bin\Debug\netcoreapp2.1\ChooseYourOwnAdventure.deps.json
+C:\Users\Vincent\source\repos\CustomList\ChooseYourOwnAdventure\bin\Debug\netcoreapp2.1\ChooseYourOwnAdventure.runtimeconfig.json
+C:\Users\Vincent\source\repos\CustomList\ChooseYourOwnAdventure\bin\Debug\netcoreapp2.1\ChooseYourOwnAdventure.runtimeconfig.dev.json
+C:\Users\Vincent\source\repos\CustomList\ChooseYourOwnAdventure\bin\Debug\netcoreapp2.1\ChooseYourOwnAdventure.dll
+C:\Users\Vincent\source\repos\CustomList\ChooseYourOwnAdventure\bin\Debug\netcoreapp2.1\ChooseYourOwnAdventure.pdb
+C:\Users\Vincent\source\repos\CustomList\ChooseYourOwnAdventure\bin\Debug\netcoreapp2.1\CustomList.dll
+C:\Users\Vincent\source\repos\CustomList\ChooseYourOwnAdventure\bin\Debug\netcoreapp2.1\CustomList.pdb
+C:\Users\Vincent\source\repos\CustomList\ChooseYourOwnAdventure\obj\Debug\netcoreapp2.1\ChooseYourOwnAdventure.csprojAssemblyReference.cache
+C:\Users\Vincent\source\repos\CustomList\ChooseYourOwnAdventure\obj\Debug\netcoreapp2.1\ChooseYourOwnAdventure.csproj.CoreCompileInputs.cache
+C:\Users\Vincent\source\repos\CustomList\ChooseYourOwnAdventure\obj\Debug\netcoreapp2.1\ChooseYourOwnAdventure.AssemblyInfoInputs.cache
+C:\Users\Vincent\source\repos\CustomList\ChooseYourOwnAdventure\obj\Debug\netcoreapp2.1\ChooseYourOwnAdventure.AssemblyInfo.cs
+C:\Users\Vincent\source\repos\CustomList\ChooseYourOwnAdventure\obj\Debug\netcoreapp2.1\ChooseYourOwnAdventure.csproj.CopyComplete
+C:\Users\Vincent\source\repos\CustomList\ChooseYourOwnAdventure\obj\Debug\netcoreapp2.1\ChooseYourOwnAdventure.dll
+C:\Users\Vincent\source\repos\CustomList\ChooseYourOwnAdventure\obj\Debug\netcoreapp2.1\ChooseYourOwnAdventure.pdb

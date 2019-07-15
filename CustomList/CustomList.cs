@@ -8,7 +8,7 @@ namespace CustomList
     public class CustomList<T> : IEnumerable<T>
     {
         private int count;
-        private T[] arr;
+        private T[] items;
 
         public CustomList() {
             count = 0;
@@ -36,7 +36,7 @@ namespace CustomList
         public CustomList(int length)
         {
             count = length;
-            arr = new T[length];
+            items = new T[length];
         }
 
         public CustomList(T[] arr)
@@ -55,7 +55,7 @@ namespace CustomList
                 this.resize(i);
                 for (int n = 0; n < count; n++)
                 {
-                    this.arr[n] = arr[n];
+                    this.items[n] = arr[n];
                 }
             }
         }
@@ -81,14 +81,14 @@ namespace CustomList
             if (n < 0)
             {
                 count = -1;
-                this.arr = null;
+                this.items = null;
             }
 
             if (n <= this.Count())
             {
                 for (int i = 0; i < n; i++)
                 {
-                    arr2[i] = arr[i];
+                    arr2[i] = items[i];
                 }
 
                 count = n;
@@ -97,17 +97,17 @@ namespace CustomList
 
             for (int i = 0; i < count; i++)
             {
-                arr2[i] = arr[i];
+                arr2[i] = items[i];
             }
 
-            this.arr = arr2;
+            this.items = arr2;
             count = n;
         }
 
         public void Add(T item)
         {
             this.resize(count + 1);
-            arr[count - 1] = item;
+            items[count - 1] = item;
         }
 
         public void Add(CustomList<T> add) {
@@ -121,7 +121,7 @@ namespace CustomList
 
             for (int i = 0; i < add.count; i++)
             {
-                arr[i + oldcount] = add[i];
+                items[i + oldcount] = add[i];
             }
         }
 
@@ -149,7 +149,7 @@ namespace CustomList
 
             for (int i = 0; i < count2; i++)
             {
-                second[i] = arr[i + index];
+                second[i] = items[i + index];
             }
 
             return new CustomList<T>[2] { first, second };
@@ -179,7 +179,7 @@ namespace CustomList
             CustomList<T> second = this.Split(index)[1];
 
             this.resize(count - 1);
-            if (first.arr == null)
+            if (first.items == null)
             {
                 copyArr(this, second);
                 return;
@@ -222,7 +222,7 @@ namespace CustomList
         {
             for (int i = 0; i < this.Count(); i++)
             {
-                f(arr[i]);
+                f(items[i]);
             }
         }
 
@@ -230,9 +230,9 @@ namespace CustomList
         {
             CustomList<T> ret = new CustomList<T>();
             for (int i = 0; i < count; i++) {
-                if (f(arr[i]))
+                if (f(items[i]))
                 {
-                    ret.Add(arr[i]);
+                    ret.Add(items[i]);
                 }
             }
 
@@ -294,16 +294,27 @@ namespace CustomList
 
             return ret;
         }
-          
-
         
+        public int Find( T item )
+        {
+                for (int i = 0; i < count; i++)
+                {
+                    if (items[i].Equals(item))
+                    {
+                        return i;
+                    }
+                }
+            
+
+            return -1;
+        }
+
         public IEnumerator<T> GetEnumerator()
         {
             for(int i=0; i<count; i++)
             {
-                yield return arr[i]; 
+                yield return items[i]; 
             }
-            
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -316,7 +327,7 @@ namespace CustomList
             {
                 try
                 {
-                    return arr[i];
+                    return items[i];
                 } catch(IndexOutOfRangeException E)
                 {
                     return default(T);
@@ -327,7 +338,7 @@ namespace CustomList
             {
                 try
                 {
-                  arr[i] = value;
+                  items[i] = value;
                 } catch(IndexOutOfRangeException E)
                 {
 

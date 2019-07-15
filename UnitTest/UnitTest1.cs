@@ -87,6 +87,14 @@ namespace UnitTest
         }
 
         [TestMethod]
+        public void TestPlusOp_AddByNull()
+        {
+            CustomList<int> test = new CustomList<int>(new int[] { 1, 2, 4, 5 }) + new CustomList<int>();
+            CustomList<int> expected = new CustomList<int>(new int[] { 1, 2, 4, 5 });
+            Assert.IsTrue(expected.Equals(test));
+        }
+
+        [TestMethod]
         public void TestSubtractOp_ExpectedOutputTrue()
         {
             CustomList<int> test = new CustomList<int>(new int[] { 1, 3, 2, 3, 4, 5 }) - new CustomList<int>(new int[] { 3 });

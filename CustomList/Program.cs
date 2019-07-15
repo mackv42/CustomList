@@ -18,21 +18,11 @@ namespace CustomList
             this.name = name;
         }
 
-        /*
-        public void this[](animal a1, animal a2)
-        {
-            set{
-                a1.color = a2.color;
-                a1.sound = a2.sound;
-                a1.name = a2.name;
+
+        public void makeSound()
+            {
+                Console.WriteLine($"The {name} says {sound}");
             }
-        }*/
-
-
-    public void makeSound()
-        {
-            Console.WriteLine($"The {name} says {sound}");
-        }
     }
 
     class Program
@@ -75,12 +65,11 @@ namespace CustomList
             CustomList<int> d = CustomList<int>.Zip(a, b);
             Console.WriteLine();
 
-           
             foreach(var x in a)
             {
                 Console.WriteLine(x);
             }
-           
+            //new StoryTree("Apples and Bananas").Start();
         }
     }
 }
