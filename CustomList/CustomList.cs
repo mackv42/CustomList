@@ -304,7 +304,6 @@ namespace CustomList
                         return i;
                     }
                 }
-            
 
             return -1;
         }

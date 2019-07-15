@@ -13,19 +13,29 @@ namespace ChooseYourOwnAdventure
             while (!f()) { }
         }
 
+        public static void printAndWait(string s, int timeout)
+        {
+            Console.WriteLine(s);
+            System.Threading.Thread.Sleep(timeout);
+        }
+
         public static int promptForOptions(string question, CustomList<string> options)
         {
             int choice = 0;
 
             string s = "";
-           
-            do
+
+            Console.WriteLine(question);
+            s = Console.ReadLine();
+            choice = options.Find(s);
+
+            while(choice == -1)
             {
+                Console.WriteLine($"I don't know what a {s} is try something else");
                 Console.WriteLine(question);
                 s = Console.ReadLine();
                 choice = options.Find(s);
-            } while (choice == -1);
-
+            } 
 
             return choice;
         }

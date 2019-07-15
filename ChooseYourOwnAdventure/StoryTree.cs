@@ -30,11 +30,37 @@ namespace ChooseYourOwnAdventure
     public class StoryTree
     {
         private CustomList<CustomList<StoryNode>> story;
-        private string Title;
+        public string Title;
         private CustomList<int> choicesList;
+        private CustomList<StoryTree> chapters;
+        private bool chapterChange;
+
+        //Could I make my own Dictionary structure?
+        private Dictionary<string, StoryTree> branches;
+
+        public StoryTree getChapter(string nameId)
+        {
+            return branches[nameId];
+        }
+
+        public void changeChapter(string nameId)
+        {
+            chapters.Add(this);
+            story = branches[nameId].story;
+            chapterChange = true;
+        }
+
+        public StoryTree branch(string name)
+        {
+            branches.Add(name, new StoryTree(name));
+            return branches[name];
+        }
 
         public StoryTree(string storyName)
         {
+            this.chapterChange = false;
+            this.chapters = new CustomList<StoryTree>();
+            this.branches = new Dictionary<string, StoryTree>();
             this.story = new CustomList<CustomList<StoryNode>>();
 
             this.Title = storyName;
@@ -76,7 +102,11 @@ namespace ChooseYourOwnAdventure
                         i = 0;
                     }
                     i += tmp;
-                    
+                }
+
+                if(tmp == 42)
+                {
+                    break;
                 }
 
                 if(tmp == -1)
@@ -88,6 +118,12 @@ namespace ChooseYourOwnAdventure
 
                 choicesList.Add(tmp);
                 choice = tmp;
+            }
+
+            if (chapterChange)
+            {
+                chapterChange = false;
+                this.Start();
             }
         }
     }
