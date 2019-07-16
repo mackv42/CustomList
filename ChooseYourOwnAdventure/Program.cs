@@ -15,6 +15,7 @@ namespace ChooseYourOwnAdventure
                 return UI.promptForOptions("Would You Like To go Left or Right",
                 new CustomList<string>(new string[] { "Left", "Right" }));
             });
+
             myStory.AddLevel();
 
             myStory.AddNode(() =>
@@ -27,7 +28,7 @@ namespace ChooseYourOwnAdventure
             myStory.AddNode(() =>
             {
                 Console.WriteLine("You continue on the right path");
-                Console.WriteLine("The path Splits 3 ways Each has a sign leading to Camelot, Babylon and Constantinople...");
+                Console.WriteLine("The path Splits 3 ways Each has a sign leading to Camelot, Babylon and Constantinople");
                 return UI.promptForOptions("Which Way do you choose to go?",
                     new CustomList<string>(new string[] { "Camelot", "Babylon", "Constantinople" }));
             });
@@ -55,7 +56,6 @@ namespace ChooseYourOwnAdventure
                 myStory.changeChapter("Skipping along to Constantinople");
                 return 0;
             });
-
 
             StoryTree constantinople = myStory.branch("Skipping along to Constantinople");
             constantinople.AddLevel();

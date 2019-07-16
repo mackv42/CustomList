@@ -165,5 +165,14 @@ namespace UnitTest
             int test = (new CustomList<int>(new int[] { 4, 5, 6, 7, 8, 9 })).Find(5);
             Assert.IsTrue(expected == test);
         }
+
+        [TestMethod]
+        public void TestSort_ExpectedOutput()
+        {
+            CustomList<int> expected = new CustomList<int>(new int[] { 4, 5, 6, 7, 8, 9});
+            CustomList<int> a = new CustomList<int>(new int[] {7, 8, 9, 4, 5, 6});
+
+            Assert.IsTrue(a.Sort(a).Equals(expected));
+        }
     }
 }

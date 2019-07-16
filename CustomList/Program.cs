@@ -33,39 +33,14 @@ namespace CustomList
             CustomList<animal> list2 = new CustomList<animal>(new animal[] { new animal("wombat", "reee"), new animal("seel", "oorf"), new animal("mouse", "eee") });
             CustomList<animal> animalsZipped = CustomList<animal>.Zip(list, list2);
 
-            CustomList<int> c = new CustomList<int>();
+            
 
-            CustomList<int> a = new CustomList<int>();
-            a.Add(10);
-            a.Add(20);
-            a.Add(30);
-            a.Add(40);
-            a.Add(45);
+            CustomList<int> expected = new CustomList<int>(new int[] { 4, 5, 6, 7, 8, 9 });
+            CustomList<IComparable> a = new CustomList<IComparable>(new IComparable[] { 7, 8, 9 });
+            CustomList<int> b = new CustomList<int>(new int[] { 4, 5, 6 });
 
-            //a.Remove(0);
-            //a.Remove(a.Count()-1);
-            Console.Write(a.Count());
 
-            CustomList<int> b = new CustomList<int>(new int[] { 10, 20, 30, 40, 50, 60});
-            int filter = 30;
-            CustomList<int> e = b.Filter( (x) =>
-            {
-                if(x >= filter)
-                {
-                    return true;
-                }
-
-                return false;
-            });
-
-            e.Map((x) => Console.WriteLine(x));
-
-            Console.Write(a.Equals(b));
-
-            CustomList<int> d = CustomList<int>.Zip(a, b);
-            Console.WriteLine();
-
-            foreach(var x in a)
+            foreach (var x in a.Sort(a))
             {
                 Console.WriteLine(x);
             }

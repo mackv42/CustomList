@@ -94,7 +94,6 @@ namespace ChooseYourOwnAdventure
             {
                 tmp = story[i][choice].Run();
 
-                // Added capability to go up levels
                 if (tmp < -1)
                 {
                     if(i + tmp + 1 < 0)

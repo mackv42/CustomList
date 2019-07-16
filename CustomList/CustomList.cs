@@ -13,10 +13,9 @@ namespace CustomList
         public CustomList() {
             count = 0;
         }
-
+        
         public bool Equals(CustomList<T> a)
         {
-
             if (a.Count() != this.Count())
             {
                 return false;
@@ -38,6 +37,7 @@ namespace CustomList
             count = length;
             items = new T[length];
         }
+        
 
         public CustomList(T[] arr)
         {
@@ -60,9 +60,53 @@ namespace CustomList
             }
         }
 
+
+        public CustomList<IComparable> Sort(CustomList<IComparable> a)
+        {
+            CustomList<IComparable> sorted = new CustomList<IComparable>(a.count);
+            CustomList<IComparable>[] split = new CustomList<IComparable>[2];
+
+            for(int i=0; i<a.count; i++)
+            {
+                split = a.Split(i);
+
+                a.copyArr(a, SortHelper(split[0], split[1]));
+            }
+
+            return sorted;
+        }
+
+        public static CustomList<IComparable> SortHelper(CustomList<IComparable> a, CustomList<IComparable> b)
+        {
+            for(int i=0; i<a.count; i++)
+            {
+                for(int j=0; j<b.count; j++)
+                {
+                    if (a[i].CompareTo( b[j]) == 1)
+                    {
+                        IComparable temp;
+                        temp = a[i];
+                        a[i] = b[j];
+                        b[j] = temp;
+                    }
+                }
+            }
+
+            return a + b;
+        }
+
         public int Count()
         {
             return count;
+        }
+
+        public void copyArr(CustomList<int> arr1, CustomList<int> arr2)
+        {
+            for (int i = 0; i < arr1.Count(); i++)
+            {
+                arr1[i] = arr2[i];
+            }
+
         }
 
         public void copyArr(CustomList<T> arr1, CustomList<T> arr2)
